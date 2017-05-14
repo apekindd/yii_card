@@ -19,63 +19,60 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?php $this->registerLinkTag(['rel' => 'canonical', 'href' => \yii\helpers\Url::canonical()]); ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
-
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
-
+<div class="navbar navbar-inverse navbar-fixed-top top-menu "><?php //navbar-static-top ?>
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main_menu">
+                <span class="sr-only">Open</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" title="Home" class="navbar-brand hs-logo"><img width="45" src="/img/logo.png"/></a>
+            <span class="logo-text navbar-text">CARDSTONE</span>
+        </div>
+        <div class="hidden-xs col-sm-1"></div>
+        <div class="collapse navbar-collapse" id="main_menu">
+            <ul class="nav navbar-nav museo_title">
+                <li class="active"><a href="#">Новости</a></li>
+                <li><a href="#">Колоды</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Архив <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">2017</a></li>
+                        <li><a href="#">2016</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Гайды</a></li>
+                <li><a href="#">Карты</a></li>
+            </ul>
+            <form class="navbar-form navbar-right hidden-sm" action="search.php" method="POST">
+                <input type="search" class="search-head" placeholder="Поиск...">&nbsp;<button class="btn btn-link pointer btn-search" type="submit"><i class="fa fa-search"></button></i>
+            </form>
+            <!-- sm search -->
+            <button class="show_search btn btn-link pointer btn-search hidden-md hidden-lg hidden-xs navbar-form navbar-right" type="button">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+        <!-- sm search -->
+        <div class="hidden-md hidden-lg hidden-xs hidden-sm" id="compact_search">
+            <form class="navbar-form navbar-right" action="search.php" method="POST" style="width: 100%;">
+                <input type="search" class="search-head " placeholder="Поиск..." style="width: 90%;">&nbsp;<button class="btn btn-link pointer btn-search" type="submit">Найти</button>
+            </form>
+        </div>
     </div>
 </div>
+<?= $content ?>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+
 
 <?php $this->endBody() ?>
 </body>

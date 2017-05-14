@@ -12,15 +12,6 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'on beforeRequest' => function () {
-        //Delete last slash or if only /en or /ru - then add it for correct work
-        $pathInfo = Yii::$app->request->url;
-        if($pathInfo == '/en/' || $pathInfo == '/ua/' || $pathInfo == '/'){
-            return true;
-        }elseif($pathInfo == '/en' || $pathInfo == '/ua'){
-            $url = $pathInfo."/";
-            Yii::$app->response->redirect($url, 301);
-            Yii::$app->end();
-        }
         if (!empty($pathInfo) && substr($pathInfo, -1) === '/') {
             $url = substr($pathInfo, 0, -1);
             Yii::$app->response->redirect($url, 301);
@@ -58,6 +49,9 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
+                'post/<code:[\w_-]+>' => 'post/show',
+                'post' => 'post/index',
+
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],

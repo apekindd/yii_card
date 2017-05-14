@@ -6,13 +6,14 @@ namespace backend\controllers;
 use Yii;
 use yii\helpers\FileHelper;
 use yii\helpers\Url;
+use yii\web\Controller;
 
-class SettingsController extends AppController
+class SettingsController extends Controller
 {
     public function actionIndex(){
-        $arScan = $this->scanCotrollers();
+        //$arScan = $this->scanCotrollers();
 
-        return $this->render('index',['arScan'=>$arScan]);
+        return $this->render('index');
     }
 
     public function actionClear(){
@@ -23,7 +24,7 @@ class SettingsController extends AppController
         }
     }
 
-    public static function scanCotrollers(){
+    /*public static function scanCotrollers(){
         $arResult['danger'] = [];
         $arResult['warning'] = [];
         $arResult['normal'] = [];
@@ -59,5 +60,5 @@ class SettingsController extends AppController
 
         }
         return $arResult;
-    }
+    }*/
 }

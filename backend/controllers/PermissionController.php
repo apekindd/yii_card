@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Permission;
+use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\rbac\Item;
@@ -11,7 +12,7 @@ use yii\rbac\Item;
 /**
  * PermissionController implements the CRUD actions for Permission model.
  */
-class PermissionController extends AppController
+class PermissionController extends Controller
 {
 
     /**

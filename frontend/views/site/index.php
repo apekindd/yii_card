@@ -4,50 +4,56 @@
 
 $this->title = 'My Yii Application';
 ?>
-<div class="site-index">
+<div class="container main index_page main-detail">
+    <div class="row top-bg hidden-xs"><div class="small-bg" style="background-image: url('/img/bg2.png');"></div></div>
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+    <!--<div class="row top-bg">
+        <div class="container_title museo_title">ТОП</div>
+        <div class="container">
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        </div>
+    </div>-->
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+    <div class="row">
+        <div class="container_title top_container museo_title">НОВОЕ</div>
+        <div class="container container_main">
+            <div class="col-xs-12 col-sm-12 col-md-8 no-padding">
+                <div class="row main_item">
+                    <div class="thumbnail col-xs-12 col-md-4  col-sm-4">
+                        <a href="detail.php">
+                            <img src="/img/n1.png" alt="" />
+                        </a>
+                    </div>
+                    <div class="caption index-post-title col-md-8  col-sm-8">
+                        <header class="detail_header_index">
+                            <h3 class="preview_title museo_title entry-title"><a href="detail.php">В тёмном омуте</a></h3>
+                            <p class="preview_text">Новая колода зулока от представителя Украины DrHippi</p>
+                            <footer class="block_footer on_main">
+                                4 ноября 2017 / 10 просмотров
+                            </footer>
+                        </header>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+            <div class="col-xs-12 col-sm-12 col-md-8 no-padding">
+                <div class="row main_item">
+                    <div class="thumbnail col-xs-12 col-sm-4 col-md-4">
+                        <a href="detail.php">
+                            <img src="/img/n2.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="caption index-post-title col-md-8 col-sm-8">
+                        <header class="detail_header_index">
+                            <h3 class="preview_title museo_title entry-title"><a href="detail.php">Хозяин таверны в городе</a></h3>
+                            <p class="preview_text">Новое приключение от Blizzard в котором найдется место для каждого героя...</p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                            <footer class="block_footer on_main">
+                                <time itemprop="dateCreated" datetime="2017-03-29T20:16:49+00:00">1 ноября 2017</time> / 100 просмотров
+                            </footer>
+                        </header>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 </div>

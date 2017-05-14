@@ -1,7 +1,15 @@
+@font-face {
+    font-family: "AdminFont"; /* Имя шрифта */
+    src: url(/fonts/MuseoCyrl500.otf); /* Путь к файлу со шрифтом */
+}
 html,
 body {
     height: 100%;
+    font-family: "AdminFont"!important;
 }
+
+.alert{margin-top: 30px;}
+.glyphicon.glyphicon-eye-open{display:none;}
 
 .wrap {
     min-height: 100%;
@@ -117,4 +125,16 @@ a.desc:after {
 
 .nav > li > form > button.logout:focus {
     outline: none;
+}
+
+.navbar-nav{
+    margin: 0px -15px;
+}
+.nav > li > a{
+    padding-right: 45px!important;
+}
+
+.mynav{margin-bottom:30px}
+.table-responsive {
+    overflow-x: auto;
 }

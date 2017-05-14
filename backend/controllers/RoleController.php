@@ -9,11 +9,12 @@ use yii\helpers\ArrayHelper;
 use yii\rbac\Item;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use yii\web\Controller;
 
 /**
  * RoleController implements the CRUD actions for Role model.
  */
-class RoleController extends AppController
+class RoleController extends Controller
 {
     /**
      * Lists all Role models.

@@ -10,7 +10,7 @@ use common\models\LoginForm;
 /**
  * Site controller
  */
-class SiteController extends AppController
+class SiteController extends Controller
 {
     public $layout;
 
