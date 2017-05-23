@@ -26,6 +26,8 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+
+<script>var _auth = <?=(Yii::$app->user->id) ? 'true' : 'false'?>;</script>
 <div class="navbar navbar-inverse navbar-fixed-top top-menu "><?php //navbar-static-top ?>
     <div class="container">
         <div class="navbar-header">

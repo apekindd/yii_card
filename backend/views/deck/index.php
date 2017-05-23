@@ -24,11 +24,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'title',
+
+            [
+                'attribute' => 'title',
+                'value'=>function($model){
+                    return "<a href='".\yii\helpers\Url::to(['/deck/update','id'=>$model->id])."'>".$model->title."</a>";
+                },
+                'format'=>'html'
+            ],
             'code',
-            'preview_text',
-            'detail_text:ntext',
+            'id',
+            //'preview_text',
+            //'detail_text:ntext',
             // 'images:ntext',
             // 'active',
             // 'date_create',
@@ -38,7 +45,19 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'dust',
             // 'views',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template'=>'{update}{delete}{page}',
+                'buttons'=>[
+                    'page' => function ($url, $model) {
+                        if($model->code != ''){
+                            $link = "/deck/".$model->code;
+                            return Html::a('<span class="glyphicon glyphicon-globe"></span>', $link, [
+                                'title' => Yii::t('yii', 'Show page'),
+                            ]);
+                        }
+                    },
+                ]
+            ],
         ],
     ]); ?>
 </div>

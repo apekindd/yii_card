@@ -41,12 +41,7 @@ class Post extends Img
     public function behaviors()
     {
         return [
-            [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'date_create',
-                'updatedAtAttribute' => 'date_update',
-                'value' => new Expression('NOW()'),
-            ],
+            TimestampBehavior::className(),
         ];
     }
 
@@ -60,7 +55,6 @@ class Post extends Img
 
             [['title', 'code', 'user_id'], 'required'],
             [['detail_text'], 'string'],
-            [['date_create', 'date_update'], 'safe'],
             [['active', 'publish', 'views', 'user_id'], 'integer'],
             [['title', 'code', 'preview_text', 'seo_description'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],

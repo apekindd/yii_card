@@ -19,7 +19,7 @@ class PostSearch extends Post
     {
         return [
             [['id', 'active', 'views', 'user_id'], 'integer'],
-            [['title', 'code', 'preview_text', 'detail_text', 'images', 'date_create', 'date_update', 'seo_description'], 'safe'],
+            [['title', 'code', 'preview_text', 'detail_text', 'images', 'seo_description'], 'safe'],
         ];
     }
 
@@ -60,8 +60,6 @@ class PostSearch extends Post
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date_create' => $this->date_create,
-            'date_update' => $this->date_update,
             'active' => $this->active,
             'views' => $this->views,
             'user_id' => $this->user_id,

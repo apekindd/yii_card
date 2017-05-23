@@ -30,7 +30,7 @@
                     <h3 class="title-comments">Комментарии (6)</h3>
                     <div class="row">
                         <div class="avatar">
-                            <img src="https://pp.userapi.com/c625421/v625421307/46842/42u1SAcasjA.jpg" width="50" height="50" />
+                            <img src="" width="50" height="50" />
                             <div class="social"><span class="letter"><i class="fa fa-facebook" aria-hidden="true"></i></span></div>
                             <!--<div class="social"><span class="letter"><i class="fa fa-vk" aria-hidden="true"></i></span></div>-->
                         </div>
@@ -39,7 +39,7 @@
                                 <textarea  name="text"></textarea>
                             </p>
                             <p class="submit">
-                                <input  type="submit" value="Комментировать" />
+                                <input  type="button" class="comment" value="Комментировать" />
                             </p>
                         </form>
                     </div>
@@ -49,7 +49,7 @@
                         <li class="media">
                             <div class="media-left">
                                 <div class="avatar">
-                                    <img class="media-object img-rounded" src="https://pp.userapi.com/c625421/v625421307/46842/42u1SAcasjA.jpg" alt="...">
+                                    <img class="media-object img-rounded" src="" alt="...">
                                     <div class="social"><span class="letter">B</span></div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <div class="avatar">
-                                            <img class="media-object img-rounded" src="https://pp.userapi.com/c625421/v625421307/46842/42u1SAcasjA.jpg" alt="...">
+                                            <img class="media-object img-rounded" src="" alt="...">
                                             <div class="social"><span class="letter">B</span></div>
                                         </div>
                                     </div>
@@ -117,7 +117,7 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 <div class="avatar">
-                                                    <img class="media-object img-rounded" src="https://pp.userapi.com/c625421/v625421307/46842/42u1SAcasjA.jpg" alt="...">
+                                                    <img class="media-object img-rounded" src="" alt="...">
                                                     <div class="social"><span class="letter"><i class="fa fa-facebook" aria-hidden="true"></i></span></div>
                                                 </div>
                                             </div>
@@ -158,7 +158,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <div class="avatar">
-                                            <img class="media-object img-rounded" src="https://pp.userapi.com/c625421/v625421307/46842/42u1SAcasjA.jpg" alt="...">
+                                            <img class="media-object img-rounded" src="" alt="...">
                                             <div class="social"><span class="letter"><i class="fa fa-facebook" aria-hidden="true"></i></span></div>
                                         </div>
                                     </div>
@@ -199,7 +199,7 @@
                         <li class="media">
                             <div class="media-left">
                                 <div class="avatar">
-                                    <img class="media-object img-rounded" src="https://pp.userapi.com/c625421/v625421307/46842/42u1SAcasjA.jpg" alt="...">
+                                    <img class="media-object img-rounded" src="" alt="...">
                                     <div class="social"><span class="letter"><i class="fa fa-facebook" aria-hidden="true"></i></span></div>
                                 </div>
                             </div>
@@ -236,7 +236,7 @@
                         <li class="media">
                             <div class="media-left">
                                 <div class="avatar">
-                                    <img class="media-object img-rounded" src="https://pp.userapi.com/c625421/v625421307/46842/42u1SAcasjA.jpg" alt="...">
+                                    <img class="media-object img-rounded" src="" alt="...">
                                     <div class="social"><span class="letter"><i class="fa fa-facebook" aria-hidden="true"></i></span></div>
                                 </div>
                             </div>

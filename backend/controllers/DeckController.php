@@ -8,11 +8,12 @@ use backend\models\search\DeckSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * DeckController implements the CRUD actions for Deck model.
  */
-class DeckController extends Controller
+class DeckController extends AppController
 {
     /**
      * @inheritdoc
@@ -65,7 +66,26 @@ class DeckController extends Controller
     {
         $model = new Deck();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+            //CHECK CODE
+            $model->code = $this->str2url($model->code);
+            if($model->code != '') {
+                if (Deck::findOne(['code' => $model->code]) !== NULL) {
+                    Yii::$app->session->setFlash('error', "Элемент с символьным кодом {$model->code} уже существует");
+                    if ($model->imageFile) {
+                        $model->uploadSeveral();
+                    }
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
+            }
+
+            $model->detail_picture = UploadedFile::getInstance($model, 'detail_picture');
+            $model->preview_picture = UploadedFile::getInstance($model, 'preview_picture');
+
+            if($model->save()) {
+                Yii::$app->session->setFlash('success', "Элемент успешно создан");
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -84,7 +104,25 @@ class DeckController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+            //CHECK CODE
+            if($model->code != '') {
+                if ($model->oldAttributes['code'] != $model->code) {
+                    $model->code = $this->str2url($model->code);
+                    if (Deck::findOne(['code' => $model->code]) !== NULL) {
+                        Yii::$app->session->setFlash('error', "Элемент с символьным кодом {$model->code} уже существует");
+                        return $this->redirect(Yii::$app->request->referrer);
+                    }
+                }
+            }
+
+            $model->detail_picture = UploadedFile::getInstance($model, 'detail_picture');
+            $model->preview_picture = UploadedFile::getInstance($model, 'preview_picture');
+
+            if($model->save()) {
+                Yii::$app->session->setFlash('success', "Элемент успешно обновлен");
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -120,5 +158,19 @@ class DeckController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionDelimage($img)
+    {
+        $arr = explode("|", base64_decode($img));
+        $path = Yii::getAlias("@frontend") .'/web/images/' . $arr[0];
+        @unlink($path);
+
+        $model = $this->findModel($arr[1]);
+        if($arr[2]==1) $model->images->preview_picture = "";
+        if($arr[2]==2) $model->images->detail_picture = "";
+
+        $model->save();
+        return $this->redirect(['update', 'id' => $model->id]);
     }
 }

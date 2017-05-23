@@ -19,7 +19,7 @@ class DeckSearch extends Deck
     {
         return [
             [['id', 'active', 'dust', 'views'], 'integer'],
-            [['title', 'code', 'preview_text', 'detail_text', 'images', 'date_create', 'date_update', 'seo_description', 'unique'], 'safe'],
+            [['title', 'code', 'preview_text', 'detail_text', 'images', 'seo_description', 'unique'], 'safe'],
         ];
     }
 
@@ -61,8 +61,6 @@ class DeckSearch extends Deck
         $query->andFilterWhere([
             'id' => $this->id,
             'active' => $this->active,
-            'date_create' => $this->date_create,
-            'date_update' => $this->date_update,
             'dust' => $this->dust,
             'views' => $this->views,
         ]);

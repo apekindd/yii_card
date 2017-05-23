@@ -26,11 +26,12 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            //'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
-            'name' => 'advanced-frontend',
+            'name' => 'advanced-backend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -49,8 +50,11 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
+                'login' => 'site/login',
                 'post/<code:[\w_-]+>' => 'post/show',
                 'post' => 'post/index',
+                'deck/<code:[\w_-]+>' => 'deck/show',
+                'deck' => 'deck/index',
 
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],

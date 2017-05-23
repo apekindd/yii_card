@@ -12,29 +12,46 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+    <!-- Навигация -->
+    <ul class="nav nav-tabs mynav" role="tablist">
+        <li class="active"><a href="#main" role="tab" data-toggle="tab">Main</a></li>
+        <li><a href="#preview" role="tab" data-toggle="tab">Preview</a></li>
+        <li><a href="#detail" role="tab" data-toggle="tab">Detail</a></li>
+    </ul>
 
-    <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'preview_text')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'detail_text')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'images')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'active')->textInput() ?>
-
-    <?= $form->field($model, 'date_create')->textInput() ?>
-
-    <?= $form->field($model, 'date_update')->textInput() ?>
-
-    <?= $form->field($model, 'seo_description')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'unique')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'dust')->textInput() ?>
-
-    <?= $form->field($model, 'views')->textInput() ?>
+    <!-- Содержимое вкладок -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="main">
+            <div class="row">
+                <div class="col-md-2"><?= $form->field($model, 'active')->dropDownList([1=>"Да",0=>"Нет"]) ?></div>
+                <div class="col-md-2"><?= $form->field($model, 'publish')->dropDownList([1=>"Да",0=>"Нет"]) ?></div>
+                <div class="col-md-2"><?= $form->field($model, 'dust')->textInput() ?></div>
+                <div class="col-md-6"><?= $form->field($model, 'unique')->textInput(['maxlength' => true]) ?></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?></div>
+                <div class="col-md-6"><?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?></div>
+            </div>
+            <div class="row" style="display:none;">
+                <div class="col-md-6">
+                    <?= $form->field($model, 'views')->textInput(['value'=>($model->views == '') ? 0 : $model->views]) ?>
+                </div>
+            </div>
+            <?= $form->field($model, 'seo_description')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="preview">
+            <?= \backend\controllers\ImgController::generateImageField('preview_picture', 'post', 1, $model, $form) ?>
+            <?= $form->field($model, 'preview_text')->textarea(['maxlength' => true,'rows'=>3]) ?>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="detail">
+            <?= \backend\controllers\ImgController::generateImageField('detail_picture', 'post', 2, $model, $form) ?>
+            <?php echo $form->field($model, 'detail_text')->widget(\mihaildev\ckeditor\CKEditor::className(),[
+                'editorOptions' => \mihaildev\elfinder\ElFinder::ckeditorOptions([
+                    'elfinder',
+                ],[]),
+            ]); ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
