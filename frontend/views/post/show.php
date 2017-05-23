@@ -28,7 +28,7 @@
             <div class="col-md-8 col-xs-12">
                 <div class="comments">
                     <h3 class="title-comments">Комментарии (6)</h3>
-                    <div class="row">
+                    <div class="row comment-form">
                         <div class="avatar">
                             <img src="" width="50" height="50" />
                             <div class="social"><span class="letter"><i class="fa fa-facebook" aria-hidden="true"></i></span></div>
@@ -38,6 +38,7 @@
                             <p class="text">
                                 <textarea  name="text"></textarea>
                             </p>
+                            <input type="hidden" name="id" value="0" />
                             <p class="submit">
                                 <input  type="button" class="comment" value="Комментировать" />
                             </p>
@@ -75,7 +76,7 @@
          |
         </span>
                                     <span class="comment-reply">
-         <a href="#" class="reply">ответить</a>
+         <a style="cursor:pointer" class="reply">ответить</a>
         </span>
                                 </div>
 
@@ -109,7 +110,7 @@
               |
             </span>
                                             <span class="comment-reply">
-              <a href="#" class="reply">ответить</a>
+              <a style="cursor:pointer" class="reply" data-id="5">ответить</a>
             </span>
                                         </div>
 

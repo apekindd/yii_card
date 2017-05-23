@@ -25,3 +25,8 @@ $(document).on('click','.comment', function(){
         alert('Заполните поле');
     }
 });
+
+$(document).on('click','.reply', function(){
+    $(this).addClass('js-with-form');
+    $(this).after("<div class='row'>"+$('.comment-form').html()+"</div>");
+});
