@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Deck */
 
-$this->title = 'Create Deck';
-$this->params['breadcrumbs'][] = ['label' => 'Decks', 'url' => ['index']];
+$this->title = 'Создание Деки';
+$this->params['breadcrumbs'][] = ['label' => 'Деки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="deck-create">

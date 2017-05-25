@@ -6,20 +6,20 @@
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     [
-                        'label' => 'Users',
+                        'label' => 'Безопасность',
                         'icon' => 'fa fa-users',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Users', 'icon' => 'fa fa-user-plus', 'url' => ['/user']],
-                            ['label' => 'Roles', 'icon' => 'fa fa-user-secret', 'url' => ['/role']],
-                            ['label' => 'Permissions', 'icon' => 'fa fa-key', 'url' => ['/permission']],
+                            ['label' => 'Пользователи', 'icon' => 'fa fa-user-plus', 'url' => ['/user']],
+                            ['label' => 'Роли', 'icon' => 'fa fa-user-secret', 'url' => ['/role']],
+                            ['label' => 'Доступы', 'icon' => 'fa fa-key', 'url' => ['/permission']],
                         ],
                     ],
-                    ['label' => 'Cards', 'icon' => 'fa fa-id-badge', 'url' => ['/card']],
-                    ['label' => 'Decks', 'icon' => 'fa fa-cubes', 'url' => ['/deck']],
-                    ['label' => 'Posts', 'icon' => 'fa fa-pencil-square', 'url' => ['/post']],
-                    ['label' => 'Comments', 'icon' => 'fa fa-comments-o', 'url' => ['/comment']],
-                    ['label' => 'Settings', 'icon' => 'fa fa-cog', 'url' => ['/settings']],
+                    ['label' => 'Карты', 'icon' => 'fa fa-id-badge', 'url' => ['/card']],
+                    ['label' => 'Деки', 'icon' => 'fa fa-cubes', 'url' => ['/deck']],
+                    ['label' => 'Записи', 'icon' => 'fa fa-pencil-square', 'url' => ['/post']],
+                    ['label' => 'Комментарии', 'icon' => 'fa fa-comments-o', 'url' => ['/comment']],
+                    ['label' => 'Настройки', 'icon' => 'fa fa-cog', 'url' => ['/settings']],
                 ],
             ]
         ) ?>

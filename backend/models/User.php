@@ -105,6 +105,7 @@ class User extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'password_repeat' => 'Подтверждение нового пароля',
             'password' => 'Новый пароль',
+            'Roles' => 'Роли',
         ];
     }
 }

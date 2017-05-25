@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Deck */
 
-$this->title = 'Update Deck: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Decks', 'url' => ['index']];
+$this->title = 'Обновление Деки: ' . $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Деки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Обновление';
 ?>
 <div class="deck-update">
 

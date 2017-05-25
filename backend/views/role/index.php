@@ -6,14 +6,14 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Roles';
+$this->title = 'Роли';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="role-index">
 
 
     <p>
-        <?= Html::a('Create Role', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

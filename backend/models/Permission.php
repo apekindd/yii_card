@@ -66,9 +66,9 @@ class Permission extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Name',
+            'name' => 'Код',
             'type' => 'Type',
-            'description' => 'Description',
+            'description' => 'Описание',
             'rule_name' => 'Rule Name',
             'data' => 'Data',
             'created_at' => 'Created At',

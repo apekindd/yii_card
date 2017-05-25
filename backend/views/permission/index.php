@@ -6,14 +6,14 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Permissions';
+$this->title = 'Доступы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="permission-index">
 
 
     <p>
-        <?= Html::a('Create Permission', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

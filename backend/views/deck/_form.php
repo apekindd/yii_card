@@ -14,9 +14,9 @@ use yii\widgets\ActiveForm;
 
     <!-- Навигация -->
     <ul class="nav nav-tabs mynav" role="tablist">
-        <li class="active"><a href="#main" role="tab" data-toggle="tab">Main</a></li>
-        <li><a href="#preview" role="tab" data-toggle="tab">Preview</a></li>
-        <li><a href="#detail" role="tab" data-toggle="tab">Detail</a></li>
+        <li class="active"><a href="#main" role="tab" data-toggle="tab">Основное</a></li>
+        <li><a href="#preview" role="tab" data-toggle="tab">Превью</a></li>
+        <li><a href="#detail" role="tab" data-toggle="tab">Детальная</a></li>
     </ul>
 
     <!-- Содержимое вкладок -->
@@ -54,7 +54,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

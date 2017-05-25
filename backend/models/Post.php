@@ -68,19 +68,19 @@ class Post extends Img
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'code' => 'Code',
-            'preview_text' => 'Preview Text',
-            'detail_text' => 'Detail Text',
+            'title' => 'Заголовок',
+            'code' => 'Символьный код',
+            'preview_text' => 'Текст превью',
+            'detail_text' => 'Детальный текст',
             'date_create' => 'Date Create',
             'date_update' => 'Date Update',
-            'active' => 'Active',
-            'publish' => 'Publish',
-            'views' => 'Views',
-            'user_id' => 'User ID',
-            'seo_description' => 'Seo Description',
-            'preview_picture' => 'preview_picture',
-            'detail_picture' => 'detail_picture',
+            'active' => 'Активность',
+            'publish' => 'Опубликовано',
+            'views' => 'Просмотры',
+            'user_id' => 'Автор',
+            'seo_description' => 'Сео-описание',
+            'preview_picture' => 'Картинка превью',
+            'detail_picture' => 'Детальная картинка',
         ];
     }
 

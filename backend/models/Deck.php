@@ -68,21 +68,21 @@ class Deck extends Img
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'code' => 'Code',
-            'preview_text' => 'Preview Text',
-            'detail_text' => 'Detail Text',
+            'title' => 'Заголовок',
+            'code' => 'Символьный код',
+            'preview_text' => 'Текст превью',
+            'detail_text' => 'Детальный текст',
             'images' => 'Images',
-            'active' => 'Active',
-            'publish' => 'Publish',
+            'active' => 'Активность',
+            'publish' => 'Опубликовано',
             'date_create' => 'Date Create',
             'date_update' => 'Date Update',
-            'seo_description' => 'Seo Description',
-            'unique' => 'Unique',
-            'dust' => 'Dust',
-            'views' => 'Views',
-            'preview_picture' => 'preview_picture',
-            'detail_picture' => 'detail_picture',
+            'seo_description' => 'Сео-описание',
+            'unique' => 'Уникальный ключ колоды',
+            'dust' => 'Пыль',
+            'views' => 'Просмотры',
+            'preview_picture' => 'Картинка превью',
+            'detail_picture' => 'Детальная картинка',
         ];
     }
 

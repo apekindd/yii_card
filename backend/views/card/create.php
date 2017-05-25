@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Card */
 
-$this->title = 'Create Card';
-$this->params['breadcrumbs'][] = ['label' => 'Cards', 'url' => ['index']];
+$this->title = 'Добавление Карты';
+$this->params['breadcrumbs'][] = ['label' => 'Карты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card-create">
