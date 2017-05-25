@@ -41,7 +41,7 @@ class Img extends \yii\db\ActiveRecord
             return false;
         }
     }
-    protected function generateName(){
+    public static function generateName(){
         $arr=['a','b','c','d','e','f','g','h','k','l','m','n','i','x','y','z'];
         
         return $arr[rand(0,count($arr)-1)].

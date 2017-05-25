@@ -2,9 +2,11 @@
 
 namespace backend\controllers;
 
+use backend\models\Img;
 use Yii;
 use backend\models\Post;
 use backend\models\search\PostSearch;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -86,7 +88,7 @@ class PostController extends ImgController
             $model->preview_picture = UploadedFile::getInstance($model, 'preview_picture');
 
             if($model->save()) {
-                Yii::$app->session->setFlash('success', "Элемент успешно создан");
+                Yii::$app->session->setFlash('success', "Элемент <a href='".Url::to(['post/update',"id"=>$model->id])."'>".$model->title."</a> успешно создан");
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -118,13 +120,33 @@ class PostController extends ImgController
                     }
                 }
             }
+            $post = Yii::$app->request->post();
+            if($post['d_crop'] != ''){
+                $res = $this->saveFromBase64($post['d_crop']);
+                if($res){
+                    $path = Yii::getAlias("@frontend") .'/web/images/' . $model->images->detail_picture;
+                    @unlink($path);
+                    $model->images->detail_picture = $res;
+                }
+            }else{
+                $model->detail_picture = UploadedFile::getInstance($model, 'detail_picture');
+            }
+
+            if($post['p_crop'] != ''){
+                $res = $this->saveFromBase64($post['p_crop']);
+                if($res){
+                    $path = Yii::getAlias("@frontend") .'/web/images/' . $model->images->preview_picture;
+                    @unlink($path);
+                    $model->images->preview_picture = $res;
+                }
+            }else{
+                $model->preview_picture = UploadedFile::getInstance($model, 'preview_picture');
+            }
 
             //many
             //$model->imageGallery = UploadedFile::getInstances($model, 'imageGallery');
-            $model->detail_picture = UploadedFile::getInstance($model, 'detail_picture');
-            $model->preview_picture = UploadedFile::getInstance($model, 'preview_picture');
             if($model->save()) {
-                Yii::$app->session->setFlash('success', "Элемент успешно обновлен");
+                Yii::$app->session->setFlash('success', "Элемент <a href='".Url::to(['post/update',"id"=>$model->id])."'>".$model->title."</a> успешно обновлен");
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

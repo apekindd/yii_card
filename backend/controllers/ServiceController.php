@@ -9,7 +9,7 @@ class ServiceController extends AppController
     const DATA_DIR = '/data/';
 
     public function actionExecute(){
-        echo $this->getHtmlDownloadCards('',false);
+        //echo $this->getHtmlDownloadCards('',false);
     }
 
     /**

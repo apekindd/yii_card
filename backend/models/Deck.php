@@ -97,12 +97,12 @@ class Deck extends Img
             $this->images = json_decode($this->images);
         }
 
-        if($this->preview_picture){
+        if(is_object($this->preview_picture)){
             $name =  $this->generateName() . '.' . $this->preview_picture->extension;
             $this->preview_picture->saveAs(Yii::getAlias("@frontend").'/web/images/' .$name);
             $this->images->preview_picture = $name;
         }
-        if($this->detail_picture){
+        if(is_object($this->detail_picture)){
             $name =  $this->generateName() . '.' . $this->detail_picture->extension;
             $this->detail_picture->saveAs(Yii::getAlias("@frontend").'/web/images/' .$name);
             $this->images->detail_picture = $name;
