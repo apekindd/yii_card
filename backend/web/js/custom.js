@@ -202,9 +202,6 @@
         $('#panel_preview, #panel_detail').mousemove(function(e) { // Привязываем событие мыши
             cropMouseMove(e, false);
         });
-
-
-
         $('#panel_preview, #panel_detail').mousedown(function(e) { // Привязываем событие мыши
             cropMouseDown(e, false);
         });

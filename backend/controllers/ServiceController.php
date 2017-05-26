@@ -10,6 +10,39 @@ class ServiceController extends AppController
 
     public function actionExecute(){
         //echo $this->getHtmlDownloadCards('',false);
+        
+        /*$result = $this->checkImagesSize(307, 465, \Yii::getAlias("@backend").'/web/data/cards/ru/');
+        echo '<pre>';print_r($result); echo '</pre>';*/
+
+        //$this->resizeImages(\Yii::getAlias("@backend").'/web/data/cards/ru/', \Yii::getAlias("@backend").'/web/data/cards/rute/');
+    }
+
+    /**
+     * Check files in dir by width and height
+     * @param int $w
+     * @param int $h
+     * @param string $dir
+     * @return array
+     *
+     */
+    public function checkImagesSize($w, $h, $dir){
+        $greyDucks = [];
+        $arFiles = scandir($dir);
+        $i=0;
+        foreach ($arFiles as $file){
+            if($file == '.' || $file == '..') continue;
+
+            $size = getimagesize($dir.$file);
+            if($size[0] == $w && $size[1]==$h){
+                continue;
+            }
+            $greyDucks[$i]['file'] = $file;
+            $greyDucks[$i]['width'] = $size[0];
+            $greyDucks[$i]['height'] = $size[1];
+            $i++;
+        }
+
+        return $greyDucks;
     }
 
     /**
@@ -314,19 +347,23 @@ class ServiceController extends AppController
     }
 
     /**
-     * Resize cards to one format(200x303)
+     * Resize cards to one format(307x465)
      * @param string $dirWithImages
      * @param string $destinationDir
      * @param int $width
      * @param int $height
      * @return int
      */
-    public function resizeImages($dirWithImages, $destinationDir, $width=200, $height=303){
+    public function resizeImages($dirWithImages, $destinationDir, $width=307, $height=465){
         $i=0;
         $arFiles = scandir($dirWithImages);
         foreach ($arFiles as $file){
             if($file == '.' || $file == '..') continue;
 
+            $size = getimagesize($dirWithImages.$file);
+            if($size[0] == $width && $size[1]==$height){
+                continue;
+            }
             $this->resizePng($width,$height,$dirWithImages.$file,$destinationDir.$file);
             $i++;
         }
@@ -360,13 +397,13 @@ class ServiceController extends AppController
         foreach ($arFiles as $file){
             if($file == '.' || $file == '..') continue;
 
-            cropPng($dirWithRuCards.$file,$tempDir.$file,0,150,200,110, 200, 110,0);
+            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,0,150,307,110, 307, 110,0);
             //include one ru crop to en card
-            includeOnPng($tempDir.$file, $dirWithEnCards.$file, 200, 110, $dirWithResults.$file, 200, 303, 150);
+            $this->includeOnPng($tempDir.$file, $dirWithEnCards.$file, 307, 110, $dirWithResults.$file, 307, 465, 150);
         }
     }
 
-    protected function cropPng($image, $destination, $x_o=40, $y_o=68, $w_o=120, $h_o=40, $dest_w=200, $dest_h=40, $bottom=0){
+    protected function cropPng($image, $destination, $x_o=40, $y_o=68, $w_o=120, $h_o=40, $dest_w=307, $dest_h=40, $bottom=0){
         $image = imagecreatefrompng($image);
         $size = min(imagesx($image), imagesy($image));
         $image2 = imagecrop($image, ['x' => $x_o, 'y' => $y_o, 'width' => $w_o, 'height' => $h_o]);
