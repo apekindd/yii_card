@@ -28,6 +28,8 @@
             <div class="col-md-8 col-xs-12">
                 <div class="comments">
                     <h3 class="title-comments">Комментарии (6)</h3>
+                    <input type="hidden" name="id" value="<?= $post->id ?>" />
+                    <input type="hidden" name="type" value="<?= $post->type ?>" />
                     <div class="row comment-form">
                         <div class="avatar">
                             <img src="" width="50" height="50" />
@@ -38,7 +40,7 @@
                             <p class="text">
                                 <textarea  name="text"></textarea>
                             </p>
-                            <input type="hidden" name="id" value="0" />
+                            <input type="hidden" name="parent_id" value="0" />
                             <p class="submit">
                                 <input  type="button" class="comment" value="Комментировать" />
                             </p>

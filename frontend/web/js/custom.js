@@ -5,9 +5,14 @@ $(document).on('click','.show_search',function(){
 $(document).on('click','.comment', function(){
     if($(this).parents('form').find('textarea').val() != ''){
         if(_auth){
-           // alert('ajax');
+            var id = $('input[name="id"]').val();
+            var type = $('input[name="type"]').val();
+           //alert('ajax');
             $.ajax({
-                data: {'text':$(this).parents('form').find('textarea').val()},
+                data: {
+                        'text':$(this).parents('form').find('textarea').val(),
+
+                },
                 url: '/comment/add',
                 method: 'POST',
                 dataType: "HTML",
