@@ -329,6 +329,9 @@
         canvas = document.getElementById('panel_detail');
         ctx = canvas.getContext('2d');
 
+
+        var box_width;
+        var box_height;
         if(url.indexOf('/deck') != -1){
             box_width = 794;
             box_height = 250;
