@@ -47,7 +47,6 @@ class Comment extends \yii\db\ActiveRecord
             [['text'], 'string'],
             [['user_id', 'element_id', 'parent_id'], 'integer'],
             [['element_type'], 'string', 'max' => 255],
-            [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => Comment::className(), 'targetAttribute' => ['parent_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }

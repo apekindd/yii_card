@@ -161,6 +161,15 @@ body{
     padding-right: 0px;
     font-size: 17px;
 }
+.navbar-text{
+    margin-right: 0px;
+}
+.first-word{
+    color:#cec6c6!important;
+}
+.second-word{
+    color:#fff281!important;
+}
 
 
 .dropdown-menu{border:none}
@@ -169,7 +178,7 @@ body{
 
 .logo-text{
     margin-left: 0px;
-    color:#c92727!important;
+    color:#c92727;
     /*color:#ff6f00!important;*/
     font-family: "Goudy Stout";
 
@@ -716,3 +725,52 @@ li.card-frame {
 .nav {
     position: relative;
 }
+.commentAdded{
+    background-color: rgba(76, 175, 111, 0.92);
+    color: white;
+    border-radius: 4px;
+    padding: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.hideComment{
+    opacity: 0;
+    transition: opacity 3s linear;
+}
+
+#comments{
+    font-family: "Museo Slab 300"; /* Имя шрифта */
+    src: url(/fonts/MuseoCyrl300.otf); /* Путь к файлу со шрифтом */
+}
+
+.soc-text{
+    color:#c92727;
+}
+.hs-logo img{
+    float:left;
+}
+.text-logo-menu{
+    position: relative;
+    top: 30px;
+    left: 35px;
+}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus{background-color: transparent}
+.header__home {
+    float: left;
+    display: block;
+    width: 30px;
+    height: 50px;
+    background: #151a23;
+    text-align: center;
+    font-size: 2em;
+}
+.fa-chevron-left{
+    position: relative;
+    top: 7px;
+    color:#cec6c6;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar{
+    background-color: #cec6c6!important;
+}
+.dark-icon{color:rgb(120, 130, 148);}

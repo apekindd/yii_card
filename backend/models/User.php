@@ -76,7 +76,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['username', 'password_hash', 'email'], 'required'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['status', 'created_at', 'updated_at','soc_id','soc_type'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
@@ -84,6 +84,7 @@ class User extends \yii\db\ActiveRecord
             [['email'], 'email'],
             [['password_reset_token'], 'unique'],
             [['password', 'password_repeat'], 'string', 'min' => 6],
+            [['name'], 'string'],
             ['password_repeat', 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
         ];
     }
@@ -106,6 +107,8 @@ class User extends \yii\db\ActiveRecord
             'password_repeat' => 'Подтверждение нового пароля',
             'password' => 'Новый пароль',
             'Roles' => 'Роли',
+            'soc_id' => 'ID в соц. сети',
+            'soc_type' => 'Тип соц. сети',
         ];
     }
 }

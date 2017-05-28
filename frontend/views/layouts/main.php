@@ -34,6 +34,12 @@ AppAsset::register($this);
      <div class="navbar-modal navbar-site-menu">
         <div class="navbar-modal-content">
             <div>
+                <a class="navbar-brand hs-logo text-logo-menu">
+                    <span class="logo-text navbar-text first-word">Hearth</span>
+                    <span class="logo-text navbar-text second-word">Gid</span>
+                </a>
+            </div>
+            <div>
                 <form action="" method="GET" autocomplete="off" class="mobile-search-form">
                     <span class="mobile-search-icon">
                         <button class="btn btn-link pointer btn-search" type="submit"><i class="fa fa-search"></i></button>
@@ -97,8 +103,16 @@ AppAsset::register($this);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" title="Home" class="navbar-brand hs-logo"><img width="45" src="/img/logo.png"/></a>
-            <span class="logo-text navbar-text">CARDSTONE</span>
+
+            <a onclick="javascript: window.history.back();" class="header__home hidden-md hidden-lg hidden-sm dark-icon">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </a>
+
+            <a href="/" class="navbar-brand hs-logo hidden-xs">
+                <img width="45" src="/img/logo.png"/>
+                <span class="logo-text navbar-text first-word">Hearth</span>
+                <span class="logo-text navbar-text second-word">Gid</span>
+            </a>
         </div>
         <div class="hidden-xs col-sm-1"></div>
         <div class="collapse navbar-collapse" id="main_menu">

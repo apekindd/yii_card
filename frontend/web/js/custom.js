@@ -1,41 +1,82 @@
-$(document).on('click','.show_search',function(){
-    $('#compact_search').toggleClass('hidden-sm');
-});
-
-$(document).on('click','.comment', function(){
-    if($(this).parents('form').find('textarea').val() != ''){
-        if(_auth){
-            var id = $('input[name="id"]').val();
-            var type = $('input[name="type"]').val();
-           //alert('ajax');
-            $.ajax({
-                data: {
-                        'text':$(this).parents('form').find('textarea').val(),
-
-                },
-                url: '/comment/add',
-                method: 'POST',
-                dataType: "HTML",
-                error: function(){
-                  alert('err');
-                },
-                success: function(data){
-                    console.log(data);
-                }
-            })
-        }else{
-            alert('signin');
-        }
-    }else{
-        alert('Заполните поле');
+$(document).ready(function(){
+    if($('.commentAdded').length > 0){
+        $('.commentAdded').addClass('hideComment');
+        setTimeout(function(){
+            $('.commentAdded').remove();
+        },3000);
     }
 });
 
-$(document).on('click','.reply', function(){
-    $(this).addClass('js-with-form');
-    $(this).after("<div class='row'>"+$('.comment-form').html()+"</div>");
-});
+//COMMENTS
+    $(document).on('click','.show_search',function(){
+        $('#compact_search').toggleClass('hidden-sm');
+    });
 
+    var _isLoading = false;
+    var _commentInfo = {};
+    $(document).on('click','.comment', function(){
+        if(!_isLoading){
+            var form = $(this).parents('form');
+            if(form.find('textarea').val() != ''){
+                if(_auth){
+                    _commentInfo['text'] = form.find('textarea').val();
+                    _commentInfo['parent_id'] = Number(form.find('input[name="parent_id"]').val());
+                    _commentInfo['id'] = Number($('input[name="id"]').val());
+                    _commentInfo['type'] = $('input[name="type"]').val();
+
+                    _isLoading = true;
+                    if(typeof(_commentInfo['id'])=='undefined' || typeof(_commentInfo['id'])=='undefined' || typeof(_commentInfo['type'])=='undefined' ||  _commentInfo['text'] == ''){
+                        _isLoading = false;
+                        console.log('check input params');
+                        return false;
+                    }
+
+                    $.ajax({
+                        data: {
+                            text:_commentInfo['text'],
+                            id: _commentInfo['id'],
+                            parent_id:  _commentInfo['parent_id'],
+                            type:  _commentInfo['type']
+                        },
+                        url: '/comment/add',
+                        method: 'POST',
+                        dataType: "HTML",
+                        error: function(){
+                            alert('err');
+                        },
+                        success: function(data){
+                            if(data == 'success') {
+                                window.location.hash = 'comments';
+                                location.reload();
+                            }
+                        },
+                        complete: function(){
+                            _isLoading=false;
+                            _commentInfo = {};
+                        }
+                    });
+                }else{
+                    alert('signin');
+                }
+            }else{
+                alert('Заполните поле');
+            }
+        }
+    });
+
+    $(document).on('click','.reply', function(){
+        if($(this).hasClass('js-with-form')){
+            $(this).siblings('.js-dynamic-cf').remove();
+            $(this).removeClass('js-with-form');
+        }else{
+            $('.js-dynamic-cf').remove();
+            $('.js-with-form').removeClass('js-with-form');
+            $(this).addClass('js-with-form');
+            $(this).after("<div class='row js-dynamic-cf js-selected'>"+$('.comment-form').html()+"</div>");
+            $('.js-selected input[name="parent_id"]').attr('value', $(this).data('id'));
+        }
+    });
+//COMMENTS END
 
 //MODAL MOBILE MENU
     //OPEN
@@ -44,6 +85,7 @@ $(document).on('click','.reply', function(){
         $('.navbar-modal-content').addClass('slideLeft');
         $('body').addClass('no-scroll');
         $('.navbar').addClass('is-focused');
+        $('.fa-chevron-left').addClass('dark-icon');
     });
     //CLOSE
     $(document).on('click','.navbar-modal-close', function(){
@@ -52,6 +94,7 @@ $(document).on('click','.reply', function(){
 
         $('.navbar.is-focused').removeClass('is-focused');
         $('body').removeClass('no-scroll');
+        $('.fa-chevron-left').removeClass('dark-icon');
         setTimeout(function(){
             $('.navbar-modal').removeClass('is-open');
             $('.navbar-modal-content').removeClass('slideRight');
