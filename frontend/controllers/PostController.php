@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use backend\models\Comment;
 use frontend\models\Post;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -15,8 +16,8 @@ class PostController extends AppController
         return $this->render('index');
     }
     public function actionShow($code=false){
-        $post = Post::findOne(['code'=>$code]);
-        if(!$post) throw new HttpException(404 ,'Элемент не найден');
+        $item = Post::findOne(['code'=>$code]);
+        if(!$item) throw new HttpException(404 ,'Элемент не найден');
 
         /*
         $ogImage = \Yii::$app->urlManager->createAbsoluteUrl(["/images/".$new->images->imageDetail[0]]);
@@ -25,8 +26,29 @@ class PostController extends AppController
         $this->view->registerMetaTag(['property'=>'og:image', 'content'=>"{$ogImage}"]);
         */
 
-        $this->setMeta($post->title, "", $post->seo_description);
+        $this->setMeta($item->title, "", $item->seo_description);
 
-        return $this->render("show", ['post'=>$post]);
+        $comments = Comment::find()
+                            ->where(['element_id'=>$item->id, 'element_type'=>'post'])
+                            ->asArray()
+                            ->orderBy(['created_at'=>SORT_DESC])
+                            ->indexBy('id')
+                            ->all();
+        $commentCnt = count($comments);
+        if($commentCnt > 0){
+            $comments = CommentController::getCommentsTree($comments);
+        }
+        //sort by parents
+        $temp = [];
+        foreach ($comments as $comment){
+            $temp[$comment['created_at']]=$comment;
+        }
+        krsort($temp);
+        $comments = $temp;
+        unset($temp);
+
+        $commentsHTML = CommentController::getCommentsHtml($comments);
+
+        return $this->render("show", ['item'=>$item, 'commentsHTML'=>$commentsHTML, 'commentsCnt'=>$commentCnt]);
     }
 }

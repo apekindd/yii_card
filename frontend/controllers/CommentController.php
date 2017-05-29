@@ -36,12 +36,26 @@ class CommentController extends AppController
                     return "err6";
                 }
             }
+            $parent_id = (int)$post['parent_id'];
+            if($parent_id > 0){
+                if(!Comment::find()->where(['id'=>$parent_id])->exists()){
+                    return "err7";
+                }
+            }
 
             $comment = new Comment();
             $comment->user_id = Yii::$app->user->id;
+            $comment->element_id = $id;
+            $comment->parent_id = $parent_id;
+            $comment->element_type = $post['type'];
+            $comment->text = $post['text'];
 
-
-            //echo '<pre>';print_r(Yii::$app->user->id); echo '</pre>';
+            if($comment->save()){
+                Yii::$app->session->setFlash('commentAdded','Ваш комментарий успешно добавлен');
+                return 'success';
+            }else{
+                return 'err8';
+            }
 
         }else{
             Yii::$app->response->redirect(Url::to(['site/index']));
@@ -51,9 +65,38 @@ class CommentController extends AppController
          * err2 - empty text
          * err3 - incorrect type
          * err4 - wrong input id
-         * err5 - Post itemnot exists
-         * err6 - Deck itemnot exists
+         * err5 - Post item not exists
+         * err6 - Deck item not exists
+         * err7 - Parent not exists
+         * err8 - Cant add to db
          */
+    }
+
+
+    public static function getCommentsTree($array){
+        $tree = [];
+        foreach($array as $id=>&$node) {
+            if($node['parent_id'] == 0){
+                $tree[$id]= &$node;
+            }else{
+                $array[$node['parent_id']]['childs'][$node['id']] = &$node;
+            }
+        }
+        return $tree;
+    }
+
+    public static function getCommentsHtml($tree){
+        $str = '';
+        foreach ($tree as $comment) {
+            $str .= self::commentToTemplate($comment);
+        }
+        return $str;
+    }
+
+    public static function commentToTemplate($comment){
+        ob_start();
+        include(Yii::getAlias("@frontend") . '/views/comment/comment-tree.php');
+        return ob_get_clean();
     }
 }
 ?>
