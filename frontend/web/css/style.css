@@ -3,6 +3,10 @@
     src: url(/fonts/MuseoCyrl700.otf); /* Путь к файлу со шрифтом */
 }
 @font-face {
+    font-family: "Goudy Stout"; /* Имя шрифта */
+    src: url(/fonts/GOUDYSTO.ttf); /* Путь к файлу со шрифтом */
+}
+@font-face {
     font-family: "Museo Slab 300"; /* Имя шрифта */
     src: url(/fonts/MuseoCyrl300.otf); /* Путь к файлу со шрифтом */
 }
