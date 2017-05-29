@@ -15,6 +15,147 @@ class ServiceController extends AppController
         echo '<pre>';print_r($result); echo '</pre>';*/
 
         //$this->resizeImages(\Yii::getAlias("@backend").'/web/data/cards/ru/', \Yii::getAlias("@backend").'/web/data/cards/rute/');
+
+        //$this->cropPng(\Yii::getAlias('@backend')."/web/data/cards/en/AT_001.png", \Yii::getAlias('@backend')."/web/data/cards/AT_001test.png", 55, 150, 140, 40, 200, 40, 0);
+
+        //$this->cropDeck(\Yii::getAlias('@backend')."/web/data/cards/en/", \Yii::getAlias('@backend')."/web/data/cards/crop/");
+
+        /*$dirWithRuCards = \Yii::getAlias('@backend')."/web/data/cards/ru/";
+        $dirWithEnCards = \Yii::getAlias('@backend')."/web/data/cards/en/";
+        $tempDir = \Yii::getAlias('@backend')."/web/data/cards/temp1/";
+        $dirWithResults = \Yii::getAlias('@backend')."/web/data/cards/result1/";
+        $file = "AT_017.png";
+        $card['type'] = 'dd';
+
+        //FIRST PART
+        $right = 50;
+        $top = 305;
+        $width = 206;
+        $height = 70;
+        $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+        //include one ru crop to en card
+        $this->includeOnPng($tempDir.$file, $dirWithEnCards.$file, $width, $height, $dirWithResults.$file, 307, 345, $top, $right);
+        //THIRD PART
+        $right = 42;
+        $top = 235;
+        $width = 225;
+        $height = 50;
+        $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+        //include one ru crop to en card
+        $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+        //OLD CARDS END
+
+        if($card['type'] == 'Заклинание' || $card['type'] == ''){
+            //SECOND PART
+            $right = 55;
+            $top = 355;
+            $width = 200;
+            $height = 50;
+            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+            //include one ru crop to en card
+            $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+        }elseif($card['type'] == 'Оружие'){
+            //SECOND PART
+            $right = 65;
+            $top = 355;
+            $width = 180;
+            $height = 50;
+            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,65,353,180,$height, $width, $height,0);
+            //include one ru crop to en card
+            $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+        }else{
+            //SECOND PART/1
+            $right = 66;
+            $top = 365;
+            $width = 176;
+            $height = 18;
+            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+            //include one ru crop to en card
+            $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+
+
+            //SECOND PART/2
+            $right = 80;
+            $top = 350;
+            $width = 146;
+            $height = 50;
+            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+            //include one ru crop to en card
+            $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+        }*/
+
+        //OLD CARDS
+        $this->translateOldCards(\Yii::getAlias('@backend')."/web/data/cards/ru/", \Yii::getAlias('@backend')."/web/data/cards/en/", \Yii::getAlias('@backend')."/web/data/cards/result/", \Yii::getAlias('@backend')."/web/data/cards/temp/");
+
+
+    }
+    public function translateOldCards($dirWithRuCards, $dirWithEnCards, $dirWithResults, $tempDir){
+        $arCards = Card::find()->where(['!=','pack',"Экспедиция в Ун'Горо"])->all();
+
+        //$arFiles = scandir($dirWithRuCards);
+        $i=0;
+        foreach ($arCards as $card){
+            $file = $card['png'];
+
+            //FIRST PART
+            $right = 50;
+            $top = 305;
+            $width = 206;
+            $height = 70;
+            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+            //include one ru crop to en card
+            $this->includeOnPng($tempDir.$file, $dirWithEnCards.$file, $width, $height, $dirWithResults.$file, 307, 345, $top, $right);
+
+            //THIRD PART
+            $right = 42;
+            $top = 235;
+            $width = 225;
+            $height = 50;
+            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+            //include one ru crop to en card
+            $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+            //OLD CARDS END
+
+            if($card['type'] == 'Заклинание' || $card['type'] == ''){
+                //SECOND PART
+                $right = 55;
+                $top = 355;
+                $width = 200;
+                $height = 50;
+                $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);//54,353,201
+                //include one ru crop to en card
+                $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+            }elseif($card['type'] == 'Оружие'){
+                //SECOND PART
+                $right = 65;
+                $top = 355;
+                $width = 180;
+                $height = 50;
+                $this->cropPng($dirWithRuCards.$file,$tempDir.$file,65,353,180,$height, $width, $height,0);
+                //include one ru crop to en card
+                $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+            }else{
+                //SECOND PART/1
+                $right = 66;
+                $top = 365;
+                $width = 176;
+                $height = 18;
+                $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+                //include one ru crop to en card
+                $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+
+
+                //SECOND PART/2
+                $right = 80;
+                $top = 350;
+                $width = 146;
+                $height = 50;
+                $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+                //include one ru crop to en card
+                $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+            }
+            $i++;
+        }
     }
 
     /**
@@ -397,12 +538,24 @@ class ServiceController extends AppController
         foreach ($arFiles as $file){
             if($file == '.' || $file == '..') continue;
 
-            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,0,150,307,110, 307, 110,0);
+            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,0,55,307,345, 307, 345,0);
             //include one ru crop to en card
-            $this->includeOnPng($tempDir.$file, $dirWithEnCards.$file, 307, 110, $dirWithResults.$file, 307, 465, 150);
+            $this->includeOnPng($tempDir.$file, $dirWithEnCards.$file, 307, 345, $dirWithResults.$file, 307, 465, 55);
         }
     }
 
+    /**
+     * Crop Image(default deck images)
+     * @param $image
+     * @param $destination
+     * @param int $x_o
+     * @param int $y_o
+     * @param int $w_o
+     * @param int $h_o
+     * @param int $dest_w
+     * @param int $dest_h
+     * @param int $bottom
+     */
     protected function cropPng($image, $destination, $x_o=40, $y_o=68, $w_o=120, $h_o=40, $dest_w=307, $dest_h=40, $bottom=0){
         $image = imagecreatefrompng($image);
         $size = min(imagesx($image), imagesy($image));
@@ -429,6 +582,21 @@ class ServiceController extends AppController
         imagepng($destination_resource, $destination);
     }
 
+    protected function cropDeck($dirWithImages, $destinationDir){
+        $arFiles = scandir($dirWithImages);
+        $i=0;
+        foreach ($arFiles as $file){
+            if($file == '.' || $file == '..') continue;
+            if(file_exists($destinationDir.$file)) continue;
+
+            $this->cropPng($dirWithImages.$file, $destinationDir.$file, 80, 120, 140, 40, 200, 40, 0);
+            $i++;
+
+        }
+
+        return $i;
+    }
+
     protected function resizePng($width, $height, $source, $destination){
         $png = imagecreatefrompng($source);
 
@@ -448,7 +616,7 @@ class ServiceController extends AppController
         imagepng($destination_resource, $destination);
     }
 
-    protected function includeOnPng($first, $bg, $w_o, $h_o, $destination, $dest_w, $dest_h, $bottom=0)
+    protected function includeOnPng($first, $bg, $w_o, $h_o, $destination, $dest_w, $dest_h, $bottom=0, $sdvig)
     {
         //Создаем полноцветное изображение
         $destination_resource = imagecreatefrompng($bg);
@@ -466,7 +634,7 @@ class ServiceController extends AppController
         imagefill($destination_resource, 0, 0, $transparent);
 
         //Ресайз
-        imagecopyresampled($destination_resource, $first, $dest_w-$w_o, $bottom, 0, 0, $w_o, $h_o, imagesx($first), imagesy($first));
+        imagecopyresampled($destination_resource, $first, $sdvig, $bottom, 0, 0, $w_o, $h_o, imagesx($first), imagesy($first));
 
 
         //Сохранение
