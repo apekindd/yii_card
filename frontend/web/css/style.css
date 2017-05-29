@@ -760,7 +760,7 @@ li.card-frame {
     display: block;
     width: 30px;
     height: 50px;
-    background: #151a23;
+    background: transparent;
     text-align: center;
     font-size: 2em;
 }
@@ -774,3 +774,4 @@ li.card-frame {
     background-color: #cec6c6!important;
 }
 .dark-icon{color:rgb(120, 130, 148);}
+.dark-panel{background-color:#2c323c!important}
