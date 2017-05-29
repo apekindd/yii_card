@@ -205,7 +205,7 @@
         $('#panel_preview, #panel_detail').mousedown(function(e) { // Привязываем событие мыши
             cropMouseDown(e, false);
         });
-k
+
         $('#panel_preview, #panel_detail').mouseup(function(e) { // Привязываем событие мыши
             cropMouseUp(e);
         });

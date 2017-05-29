@@ -20,31 +20,31 @@ class ServiceController extends AppController
 
         //$this->cropDeck(\Yii::getAlias('@backend')."/web/data/cards/en/", \Yii::getAlias('@backend')."/web/data/cards/crop/");
 
-        /*$dirWithRuCards = \Yii::getAlias('@backend')."/web/data/cards/ru/";
+        $dirWithRuCards = \Yii::getAlias('@backend')."/web/data/cards/ru/";
         $dirWithEnCards = \Yii::getAlias('@backend')."/web/data/cards/en/";
         $tempDir = \Yii::getAlias('@backend')."/web/data/cards/temp1/";
         $dirWithResults = \Yii::getAlias('@backend')."/web/data/cards/result1/";
-        $file = "AT_017.png";
+
         $card['type'] = 'dd';
 
-        //FIRST PART
-        $right = 50;
-        $top = 305;
-        $width = 206;
+       /* //FIRST PART
+        $right = 52;
+        $top = 285;
+        $width = 210;
         $height = 70;
         $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
         //include one ru crop to en card
         $this->includeOnPng($tempDir.$file, $dirWithEnCards.$file, $width, $height, $dirWithResults.$file, 307, 345, $top, $right);
         //THIRD PART
         $right = 42;
-        $top = 235;
-        $width = 225;
-        $height = 50;
+        $top = 232;
+        $width = 230;
+        $height = 3;
         $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
         //include one ru crop to en card
-        $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+        $this->includeOnPng($tempDir.$file,   $dirWithEnCards.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top+13, $right-5);
         //OLD CARDS END
-
+        die();
         if($card['type'] == 'Заклинание' || $card['type'] == ''){
             //SECOND PART
             $right = 55;
@@ -84,11 +84,44 @@ class ServiceController extends AppController
             $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
         }*/
 
+        $file = "UNG_037.png";
+        //SECOND PART/1
+        $right = 70;
+        $top = 393;
+        $width = 158;
+        $height = 39;
+        /*$right = 65;
+        $top = 399;
+        $width = 158;
+        $height = 50;*/
+        $this->cropPng($dirWithEnCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+        //include one ru crop to en card
+        $this->includeOnPng($tempDir.$file,   $dirWithRuCards.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top-11, $right+7);
+
         //OLD CARDS
-        $this->translateOldCards(\Yii::getAlias('@backend')."/web/data/cards/ru/", \Yii::getAlias('@backend')."/web/data/cards/en/", \Yii::getAlias('@backend')."/web/data/cards/result/", \Yii::getAlias('@backend')."/web/data/cards/temp/");
+        //$this->translateUngoroCards(\Yii::getAlias('@backend')."/web/data/cards/ru/", \Yii::getAlias('@backend')."/web/data/cards/en/", \Yii::getAlias('@backend')."/web/data/cards/result/", \Yii::getAlias('@backend')."/web/data/cards/temp/");
 
 
     }
+
+    public function translateUngoroCards($dirWithRuCards, $dirWithEnCards, $dirWithResults, $tempDir){
+        $arCards = Card::find()->where(['=','pack',"Экспедиция в Ун'Горо"])->all();
+
+        foreach ($arCards as $card){
+            $file = $card['png'];
+
+            $right = 84;
+            $top = 395;
+            $width = 147;
+            $height = 50;
+            $this->cropPng($dirWithEnCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+            //include one ru crop to en card
+            $this->includeOnPng($tempDir.$file,   $dirWithRuCards.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top-9, $right);
+
+        }
+
+    }
+
     public function translateOldCards($dirWithRuCards, $dirWithEnCards, $dirWithResults, $tempDir){
         $arCards = Card::find()->where(['!=','pack',"Экспедиция в Ун'Горо"])->all();
 
