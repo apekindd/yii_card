@@ -205,46 +205,47 @@
         $('#panel_preview, #panel_detail').mousedown(function(e) { // Привязываем событие мыши
             cropMouseDown(e, false);
         });
-
+k
         $('#panel_preview, #panel_detail').mouseup(function(e) { // Привязываем событие мыши
             cropMouseUp(e);
         });
+        if($('#panel_detail').length > 0) {
+            document.getElementById('panel_detail').addEventListener('touchstart', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                cropMouseDown(e, true);
+            }, false);
 
-        document.getElementById('panel_detail').addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            cropMouseDown(e, true);
-        }, false);
+            document.getElementById('panel_detail').addEventListener('touchmove', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                cropMouseMove(e, true);
+            }, false);
 
-        document.getElementById('panel_detail').addEventListener('touchmove', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            cropMouseMove(e, true);
-        }, false);
+            document.getElementById('panel_detail').addEventListener('touchend', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                cropMouseUp(e, true);
+            }, false);
 
-        document.getElementById('panel_detail').addEventListener('touchend', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            cropMouseUp(e, true);
-        }, false);
+            document.getElementById('panel_preview').addEventListener('touchstart', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                cropMouseDown(e, true);
+            }, false);
 
-        document.getElementById('panel_preview').addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            cropMouseDown(e, true);
-        }, false);
+            document.getElementById('panel_preview').addEventListener('touchmove', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                cropMouseMove(e, true);
+            }, false);
 
-        document.getElementById('panel_preview').addEventListener('touchmove', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            cropMouseMove(e, true);
-        }, false);
-
-        document.getElementById('panel_preview').addEventListener('touchend', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            cropMouseUp(e, true);
-        }, false);
+            document.getElementById('panel_preview').addEventListener('touchend', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                cropMouseUp(e, true);
+            }, false);
+        }
     });
 
 
