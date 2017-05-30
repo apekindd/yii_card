@@ -30,8 +30,8 @@ AppAsset::register($this);
 <script>var _auth = <?=(Yii::$app->user->id) ? 'true' : 'false'?>;</script>
 <div class="navbar navbar-inverse navbar-fixed-top top-menu "><?php //navbar-static-top ?>
 
-    <div class="navbar-overlay"></div>
-     <div class="navbar-modal navbar-site-menu">
+     <div class="navbar-overlay"></div>
+     <div class="navbar-modal navbar-site-menu" id="mobileMenu">
         <div class="navbar-modal-content">
             <div>
                 <a class="navbar-brand hs-logo text-logo-menu">

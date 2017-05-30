@@ -89,6 +89,10 @@ $(document).ready(function(){
     });
     //CLOSE
     $(document).on('click','.navbar-modal-close', function(){
+        closeMobileMenu();
+    });
+
+    function closeMobileMenu(){
         $('.navbar-modal-content').removeClass('slideLeft');
         $('.navbar-modal-content').addClass('slideRight');
 
@@ -99,8 +103,41 @@ $(document).ready(function(){
             $('.navbar-modal').removeClass('is-open');
             $('.navbar-modal-content').removeClass('slideRight');
         },200);
-    });
+    }
 //MODAL MOBILE MENU END
+
+//SWIPE
+    var initialPoint;
+    var finalPoint;
+    document.getElementById('mobileMenu').addEventListener('touchstart', function(event) {
+        /*event.preventDefault();
+        event.stopPropagation();*/
+        initialPoint=event.changedTouches[0];
+    }, false);
+    document.getElementById('mobileMenu').addEventListener('touchend', function(event) {
+        /*event.preventDefault();
+         event.stopPropagation();*/
+        finalPoint=event.changedTouches[0];
+        var xAbs = Math.abs(initialPoint.pageX - finalPoint.pageX);
+        var yAbs = Math.abs(initialPoint.pageY - finalPoint.pageY);
+        if (xAbs > 20 || yAbs > 20) {
+            if (xAbs > yAbs) {
+                if (finalPoint.pageX < initialPoint.pageX){
+                    /*СВАЙП ВЛЕВО*/
+                }else{
+                    closeMobileMenu();
+                    /*СВАЙП ВПРАВО*/
+                }
+            } else {
+                if (finalPoint.pageY < initialPoint.pageY){
+                    /*СВАЙП ВВЕРХ*/
+                } else{
+                    /*СВАЙП ВНИЗ*/
+                }
+            }
+        }
+    }, false);
+//SWIPE END
 
 //NAV MOVING LINE
     $(function () {
