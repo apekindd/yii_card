@@ -81,8 +81,25 @@ class DeckController extends ImgController
                 }
             }
 
-            $model->detail_picture = UploadedFile::getInstance($model, 'detail_picture');
-            $model->preview_picture = UploadedFile::getInstance($model, 'preview_picture');
+            $post = Yii::$app->request->post();
+            if($post['d_crop'] != ''){
+                $res = $this->saveFromBase64($post['d_crop']);
+                if($res){
+                    $model->images->detail_picture = $res;
+                }
+            }else{
+                $model->detail_picture = UploadedFile::getInstance($model, 'detail_picture');
+            }
+
+            if($post['p_crop'] != ''){
+                $res = $this->saveFromBase64($post['p_crop']);
+                if($res){
+                    $model->images->preview_picture = $res;
+                }
+            }else{
+                $model->preview_picture = UploadedFile::getInstance($model, 'preview_picture');
+            }
+
 
             if($model->save()) {
                 Yii::$app->session->setFlash('success', "Элемент <a href='".Url::to(['deck/update',"id"=>$model->id])."'>".$model->title."</a> успешно создан");

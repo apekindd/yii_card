@@ -4,6 +4,7 @@
 namespace frontend\controllers;
 
 
+use frontend\models\Post;
 use yii\web\Controller;
 use Yii;
 
@@ -37,7 +38,20 @@ class AppController extends Controller
         $this->view->registerMetaTag(['name'=>'description', 'content'=>"$description"]);
     }
 
+    protected function setOg($title, $desc, $img){
+        $this->view->registerMetaTag(['property'=>'og:title', 'content'=>"{$title}"]);
+        $this->view->registerMetaTag(['property'=>'og:description', 'content'=>"{$desc}"]);
+        $this->view->registerMetaTag(['property'=>'og:image', 'content'=>"{$img}"]);
+    }
+
     public static function getIndexDate($time){
         return date('j',$time).' '.self::$arMonth[date('m',$time)].' '.date('Y',$time);
+    }
+
+    protected function increaseViews($table, $id){
+        $sql = "UPDATE {$table} SET views = views + 1 WHERE id={$id}";
+        Yii::$app->db->createCommand($sql)->execute();
+        /*$result = Yii::$app->db->createCommand("SELECT views FROM {$table} WHERE id={$id}")->queryOne();
+        return $result['views'];*/
     }
 }

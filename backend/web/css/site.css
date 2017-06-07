@@ -154,3 +154,8 @@ a.desc:after {
     border-left-color: #e89a57!important;
 }
 
+.modal-dialog{
+    max-width: 100%;
+}
+
+

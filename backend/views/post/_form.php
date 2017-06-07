@@ -42,14 +42,13 @@ use yii\widgets\ActiveForm;
         </div>
         <div role="tabpanel" class="tab-pane" id="preview">
             <div class="row">
-                <div class="col-md-6"> <?= \backend\controllers\ImgController::generateImageField('preview_picture', 'post', 1, $model, $form) ?></div>
                 <div class="col-md-6">
-                    <?php if($model->images->preview_picture){ ?>
-                        <div style='display: inline-grid;margin-left: 20px;border:2px solid #000; padding:5px;margin-top:5px;margin-bottom:5px'>
-                            <img id='preview_crop' style='display: inline-grid;'/><br/>
-                            <input type='hidden' name="p_crop" value="" />
-                            <button type="button" class="btn btn-default crop-preview-modal" data-toggle="modal" data-target="#previewModal">Обрезать</button>
-                        </div>
+                    <?= \backend\controllers\ImgController::generateImageField('preview_picture', 'post', 1, $model, $form) ?>
+                </div>
+                <div class="col-md-6">
+                    <?php if(!$model->images->preview_picture){ ?>
+                        <img id='preview_crop' src="" style='display: none; max-width:200px'/>
+                        <input type='hidden' name="p_crop" value="" />
                     <?php } ?>
                 </div>
             </div>
@@ -67,13 +66,12 @@ use yii\widgets\ActiveForm;
                     <?= \backend\controllers\ImgController::generateImageField('detail_picture', 'post', 2, $model, $form) ?>
                 </div>
                 <div class="col-md-6">
-                    <?php if($model->images->detail_picture){ ?>
-                    <div style='display: inline-grid;margin-left: 20px;border:2px solid #000; padding:5px;margin-top:5px;margin-bottom:5px'>
-                        <img id='detail_crop' style='display: inline-grid;max-width: 100%'/><br/>
-                        <input type='hidden' name="d_crop" value="" />
-                        <button type="button" class="btn btn-default crop-detail-modal" data-toggle="modal" data-target="#detailModal">Обрезать</button>
-                        </div>
-                    <?php } ?>
+                    <div class="col-md-6">
+                        <?php if(!$model->images->detail_picture){ ?>
+                            <img id='detail_crop' src="" style='display: none; max-width:200px'/>
+                            <input type='hidden' name="d_crop" value="" />
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
 
@@ -92,26 +90,27 @@ use yii\widgets\ActiveForm;
 
 </div>
 
+
 <!-- Preview Modal -->
 <div class="modal fade" id="previewModal" role="dialog">
-    <div class="modal-dialog modal-lg" style="overflow: scroll;width: 80%;">
+    <div class="modal-dialog modal-lg" >
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close close-preview" data-dismiss="modal">&times;</button>
                 <h4>Выделите нужную область</h4>
             </div>
             <div class="modal-body">
-                <canvas id="panel_preview" width="200" height="200"></canvas>
-                <div id="results_preview" style="display: none;">
-                    <img id="crop_result_preview" />
+                <div class="cropp">
+                    <div class="cropp__img">
+                        <img src="#" alt="" id='crop_result_preview'>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="contr">
-                    <!--<button type="button" onclick="getPreviewResults()" class="btn btn">Обрезать</button>-->
-                    <button type="button" onclick="getPreviewResults()" class="btn btn-success crop-preview-add" data-dismiss="modal">Добавить</button>
+                    <button type="button" onclick="getPreviewResults()" class="btn btn-success" data-dismiss="modal">Добавить</button>
                 </div>
             </div>
         </div>
@@ -121,24 +120,24 @@ use yii\widgets\ActiveForm;
 
 <!-- Detail Modal -->
 <div class="modal fade" id="detailModal" role="dialog">
-    <div class="modal-dialog modal-lg" style="overflow: scroll;width: 80%;">
+    <div class="modal-dialog modal-lg" >
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close close-detail" data-dismiss="modal">&times;</button>
                 <h4>Выделите нужную область</h4>
             </div>
             <div class="modal-body">
-                <canvas id="panel_detail" width="200" height="200"></canvas>
-                <div id="results_detail" style="display: none;">
-                    <img id="crop_result_detail" />
+                <div class="cropp">
+                    <div class="cropp__img">
+                        <img src="#" alt="" id='crop_result_detail'>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="contr">
-                    <!--<button type="button" onclick="getDetailResults()" class="btn btn">Обрезать</button>-->
-                    <button type="button" onclick="getDetailResults()" class="btn btn-success crop-detail-add" data-dismiss="modal">Добавить</button>
+                    <button type="button" onclick="getDetailResults()" class="btn btn-success" data-dismiss="modal">Добавить</button>
                 </div>
             </div>
         </div>

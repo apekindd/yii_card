@@ -14,8 +14,10 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/font-awesome.min.css',
         'css/site.css',
+        'css/cropper.css',
     ];
     public $js = [
+        'js/cropper.js',
         'js/custom.js',
     ];
     public $depends = [

@@ -4,11 +4,13 @@ namespace frontend\models;
 
 use Yii;
 
-class Post extends \yii\db\ActiveRecord
+class Deck extends \yii\db\ActiveRecord
 {
+    public $cards;
+
     public static function tableName()
     {
-        return 'post';
+        return 'deck';
     }
 
     public function afterFind()

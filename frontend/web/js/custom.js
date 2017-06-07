@@ -159,3 +159,25 @@ $(document).ready(function(){
         movingLine.init();
     });
 //NAV MOVING LINE END
+
+//SHOW CARDS
+$('.focus').mousemove(function(e){
+    var X = e.pageX;
+    var Y = e.pageY;
+    //var top = Y  + 10 + 'px';
+    var top = 0 + 'px';
+    var left = X  + 10 + 'px';
+    var id = $(this).data('view');
+    $('#view-'+id).css({
+        display:"block",
+        top: top,
+        left: left
+    });
+});
+$('.focus').mouseout (function(){
+    var id = $(this).data('view');
+    $('#view-'+id).css({
+        display:"none"
+    });
+});
+//SHOW CARDS END

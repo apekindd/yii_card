@@ -18,88 +18,86 @@ class ServiceController extends AppController
 
         //$this->cropPng(\Yii::getAlias('@backend')."/web/data/cards/en/AT_001.png", \Yii::getAlias('@backend')."/web/data/cards/AT_001test.png", 55, 150, 140, 40, 200, 40, 0);
 
-        //$this->cropDeck(\Yii::getAlias('@backend')."/web/data/cards/en/", \Yii::getAlias('@backend')."/web/data/cards/crop/");
+        //$this->cropDeck(\Yii::getAlias('@backend')."/web/data/cards/deck_miss/", \Yii::getAlias('@backend')."/web/data/cards/crop/");
+        /*
+       $dirWithRuCards = \Yii::getAlias('@backend')."/web/data/cards/ru/";
+       $dirWithEnCards = \Yii::getAlias('@backend')."/web/data/cards/en/";
+       $tempDir = \Yii::getAlias('@backend')."/web/data/cards/temp1/";
+       $dirWithResults = \Yii::getAlias('@backend')."/web/data/cards/result1/";
 
-        $dirWithRuCards = \Yii::getAlias('@backend')."/web/data/cards/ru/";
-        $dirWithEnCards = \Yii::getAlias('@backend')."/web/data/cards/en/";
-        $tempDir = \Yii::getAlias('@backend')."/web/data/cards/temp1/";
-        $dirWithResults = \Yii::getAlias('@backend')."/web/data/cards/result1/";
+       $card['type'] = 'dd';
 
-        $card['type'] = 'dd';
-
-       /* //FIRST PART
-        $right = 52;
-        $top = 285;
-        $width = 210;
-        $height = 70;
-        $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
-        //include one ru crop to en card
-        $this->includeOnPng($tempDir.$file, $dirWithEnCards.$file, $width, $height, $dirWithResults.$file, 307, 345, $top, $right);
-        //THIRD PART
-        $right = 42;
-        $top = 232;
-        $width = 230;
-        $height = 3;
-        $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
-        //include one ru crop to en card
-        $this->includeOnPng($tempDir.$file,   $dirWithEnCards.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top+13, $right-5);
-        //OLD CARDS END
-        die();
-        if($card['type'] == 'Заклинание' || $card['type'] == ''){
-            //SECOND PART
-            $right = 55;
-            $top = 355;
-            $width = 200;
-            $height = 50;
-            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
-            //include one ru crop to en card
-            $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
-        }elseif($card['type'] == 'Оружие'){
-            //SECOND PART
-            $right = 65;
-            $top = 355;
-            $width = 180;
-            $height = 50;
-            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,65,353,180,$height, $width, $height,0);
-            //include one ru crop to en card
-            $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
-        }else{
-            //SECOND PART/1
-            $right = 66;
-            $top = 365;
-            $width = 176;
-            $height = 18;
-            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
-            //include one ru crop to en card
-            $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+        //FIRST PART
+       $right = 52;
+       $top = 285;
+       $width = 210;
+       $height = 70;
+       $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+       //include one ru crop to en card
+       $this->includeOnPng($tempDir.$file, $dirWithEnCards.$file, $width, $height, $dirWithResults.$file, 307, 345, $top, $right);
+       //THIRD PART
+       $right = 42;
+       $top = 232;
+       $width = 230;
+       $height = 3;
+       $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+       //include one ru crop to en card
+       $this->includeOnPng($tempDir.$file,   $dirWithEnCards.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top+13, $right-5);
+       //OLD CARDS END
+       die();
+       if($card['type'] == 'Заклинание' || $card['type'] == ''){
+           //SECOND PART
+           $right = 55;
+           $top = 355;
+           $width = 200;
+           $height = 50;
+           $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+           //include one ru crop to en card
+           $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+       }elseif($card['type'] == 'Оружие'){
+           //SECOND PART
+           $right = 65;
+           $top = 355;
+           $width = 180;
+           $height = 50;
+           $this->cropPng($dirWithRuCards.$file,$tempDir.$file,65,353,180,$height, $width, $height,0);
+           //include one ru crop to en card
+           $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+       }else{
+           //SECOND PART/1
+           $right = 66;
+           $top = 365;
+           $width = 176;
+           $height = 18;
+           $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+           //include one ru crop to en card
+           $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
 
 
-            //SECOND PART/2
-            $right = 80;
-            $top = 350;
-            $width = 146;
-            $height = 50;
-            $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
-            //include one ru crop to en card
-            $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
-        }*/
+           //SECOND PART/2
+           $right = 80;
+           $top = 350;
+           $width = 146;
+           $height = 50;
+           $this->cropPng($dirWithRuCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
+           //include one ru crop to en card
+           $this->includeOnPng($tempDir.$file,   $dirWithResults.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top, $right);
+       }*/
 
-        $file = "UNG_037.png";
+        /* = "UNG_009.png";
         //SECOND PART/1
-        $right = 70;
+        $right = 82;
         $top = 393;
-        $width = 158;
+        $width = 150;
         $height = 39;
-        /*$right = 65;
-        $top = 399;
-        $width = 158;
-        $height = 50;*/
+
         $this->cropPng($dirWithEnCards.$file,$tempDir.$file,$right,$top,$width,$height, $width, $height,0);
         //include one ru crop to en card
-        $this->includeOnPng($tempDir.$file,   $dirWithRuCards.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top-11, $right+7);
+        $this->includeOnPng($tempDir.$file,   $dirWithRuCards.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top-17, $right+3);
+        */
 
         //OLD CARDS
-        //$this->translateUngoroCards(\Yii::getAlias('@backend')."/web/data/cards/ru/", \Yii::getAlias('@backend')."/web/data/cards/en/", \Yii::getAlias('@backend')."/web/data/cards/result/", \Yii::getAlias('@backend')."/web/data/cards/temp/");
+        //$this->translateOldCards(\Yii::getAlias('@backend')."/web/data/cards/ru/", \Yii::getAlias('@backend')."/web/data/cards/en/", \Yii::getAlias('@backend')."/web/data/cards/result/", \Yii::getAlias('@backend')."/web/data/cards/temp/");
 
 
     }
@@ -128,6 +126,7 @@ class ServiceController extends AppController
         //$arFiles = scandir($dirWithRuCards);
         $i=0;
         foreach ($arCards as $card){
+
             $file = $card['png'];
 
             //FIRST PART
@@ -622,7 +621,7 @@ class ServiceController extends AppController
             if($file == '.' || $file == '..') continue;
             if(file_exists($destinationDir.$file)) continue;
 
-            $this->cropPng($dirWithImages.$file, $destinationDir.$file, 80, 120, 140, 40, 200, 40, 0);
+            $this->cropPng($dirWithImages.$file, $destinationDir.$file, 80, 90, 140, 40, 200, 40, 0);
             $i++;
 
         }
