@@ -24,10 +24,9 @@
                                     <p class="blur-card-left"></p>
                                     <p class="blur-card-right"></p>
                                     <img src="/data/preview/<?=$card['png'] ?>">
-                                    <!--<img src="<?= Yii::getAlias('@frontend') ."/web/data/preview/".$card['png'] ?>">-->
                                 </span>
                             </li>
-                                <div class="card-view" id="view-<?= $card['id'] ?>">tooltip1</div>
+                                <div class="card-view" id="view-<?= $card['id'] ?>"><img src="/data/cards/<?=$card['png'] ?>" /></div>
                             <?php } ?>
                         </ul>
                     </div>

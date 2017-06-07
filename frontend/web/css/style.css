@@ -801,10 +801,6 @@ li.card-frame {
 
 .card-view {
     display: none;
-    padding: 15px;
     position: absolute;
-    background: #000;
-    border-radius: 4px;
-    color: #fff;
     z-index:999;
 }
