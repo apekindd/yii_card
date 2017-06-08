@@ -9,6 +9,10 @@ class ServiceController extends AppController
     const DATA_DIR = '/data/';
 
     public function actionExecute(){
+
+
+        $this->resizeImages(\Yii::getAlias('@backend')."/web/data/cards/KAR/", \Yii::getAlias('@backend')."/web/data/cards/KARAZAN/");
+
         //echo $this->getHtmlDownloadCards('',false);
         
         /*$result = $this->checkImagesSize(307, 465, \Yii::getAlias("@backend").'/web/data/cards/ru/');
@@ -20,10 +24,10 @@ class ServiceController extends AppController
 
         //$this->cropDeck(\Yii::getAlias('@backend')."/web/data/cards/deck_miss/", \Yii::getAlias('@backend')."/web/data/cards/crop/");
 
-       $dirWithRuCards = \Yii::getAlias('@backend')."/web/data/cards/ru/";
+       /*$dirWithRuCards = \Yii::getAlias('@backend')."/web/data/cards/ru/";
        $dirWithEnCards = \Yii::getAlias('@backend')."/web/data/cards/en/";
        $tempDir = \Yii::getAlias('@backend')."/web/data/cards/temp1/";
-       $dirWithResults = \Yii::getAlias('@backend')."/web/data/cards/result1/";
+       $dirWithResults = \Yii::getAlias('@backend')."/web/data/cards/result1/";*/
 /*
        $card['type'] = 'dd';
 
@@ -89,7 +93,7 @@ class ServiceController extends AppController
 
 
 
-        $files[]="CFM_811.png";
+        /*$files[]="CFM_811.png";
         //$files[]="CFM_717.png";
 
 
@@ -107,10 +111,10 @@ class ServiceController extends AppController
             $height = 45;
 
             //3th
-            /*$right = 85;
+            $right = 85;
             $top = 370;
             $width = 146;
-            $height = 41;*/
+            $height = 41;
 
 
 
@@ -122,7 +126,7 @@ class ServiceController extends AppController
            // $this->includeOnPng($tempDir.$file,   $dirWithRuCards.$file, $width, $height,  $dirWithResults.$file, 307, 345, $top+13, $right+4);
         }
 
-
+        */
 
 
 
