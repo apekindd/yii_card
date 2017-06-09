@@ -13,7 +13,7 @@ class SocAuthController extends AppController
         return $this->render('index');
     }
 
-    public function actionAuth(){
+    public function actionCheck(){
         if(\Yii::$app->request->isAjax){
             $post = \Yii::$app->request->post();
             $result = [];

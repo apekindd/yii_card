@@ -13,7 +13,7 @@
         var profile = googleUser.getBasicProfile();
         if(!isAuth) {
             $.ajax({
-                url: "/soc-auth/auth",
+                url: "/auth/check",
                 type: "post",
                 dataType: "json",
                 data: {
