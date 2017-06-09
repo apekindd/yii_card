@@ -56,9 +56,9 @@ return [
                 'deck/<code:[\w_-]+>' => 'deck/show',
                 'deck' => 'deck/index',
                 'auth' => 'soc-auth/index',
-                'auth/check' => 'soc-auth/check',
+                //'auth/check' => 'soc-auth/check',
 
-                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+                //'<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
     ],
