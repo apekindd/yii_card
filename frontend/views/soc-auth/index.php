@@ -27,6 +27,7 @@
                 },
                 success: function(data){
                     var json = JSON.parse(data);
+                    console.log(json);
                     if(json.status == "success"){
                         var date = new Date(new Date().getTime() + 86400 * 1000 * 600);
                         document.cookie = "hgauth="+json.auth_string+"; path=/; expires=" + date.toUTCString();
