@@ -58,7 +58,7 @@ return [
                 'auth' => 'soc-auth/index',
                 //'auth/check' => 'soc-auth/check',
 
-                //'<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
     ],
