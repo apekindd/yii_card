@@ -1,10 +1,41 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
 <script>
+    var isAuth=false;
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        if(isAuth) {
+            $.ajax({
+                url: "/soc-auth/auth",
+                type: "post",
+                dataType: "json",
+                data: {
+                    id: profile.getId(),
+                    name: profile.getName(),
+                    type: 'google',
+                    image: profile.getImageUrl()
+                },
+                beforeSend: function(){
+                    isAuth=true;
+                },
+                success: function(data){
+                    var json = JSON.parse(data);
+                    if(json.status == "success"){
+                        var date = new Date(new Date().getTime() + 86400 * 1000 * 600);
+                        document.cookie = "hgauth="+json.auth_string+"; path=/; expires=" + date.toUTCString();
+                    }
+                },
+                complete: function(){
+                    isAuth=false;
+                }
+            });
+        }
     }
 </script>
