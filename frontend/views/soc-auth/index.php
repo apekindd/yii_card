@@ -11,7 +11,7 @@
     var isAuth=false;
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
-        if(isAuth) {
+        if(!isAuth) {
             $.ajax({
                 url: "/soc-auth/auth",
                 type: "post",
