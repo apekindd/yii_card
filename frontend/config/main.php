@@ -55,6 +55,7 @@ return [
                 'post' => 'post/index',
                 'deck/<code:[\w_-]+>' => 'deck/show',
                 'deck' => 'deck/index',
+                'auth' => 'soc-auth/index',
 
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],

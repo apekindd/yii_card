@@ -18,6 +18,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="910454265687-m8g6e0gfgjj9e67ictu6k4qmlmehvrnh.apps.googleusercontent.com">
     <?= Html::csrfMetaTags() ?>
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <title><?= Html::encode($this->title) ?></title>
@@ -25,7 +26,7 @@ AppAsset::register($this);
     <?php $this->registerLinkTag(['rel' => 'canonical', 'href' => \yii\helpers\Url::canonical()]); ?>
 </head>
 <body>
-
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <div id="fb-root"></div>
 <script >
     window.fbAsyncInit = function() {
